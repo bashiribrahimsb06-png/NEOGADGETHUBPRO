@@ -1,1 +1,48 @@
-import os\nimport zipfile\nimport shutil\nimport re\n\ndef organize_files(zip_path, output_dir):\n    os.makedirs(output_dir, exist_ok=True)\n    css_dir = os.path.join(output_dir, 'css')\n    js_dir = os.path.join(output_dir, 'js')\n    data_dir = os.path.join(output_dir, 'data')\n\n    os.makedirs(css_dir, exist_ok=True)\n    os.makedirs(js_dir, exist_ok=True)\n    os.makedirs(data_dir, exist_ok=True)\n\n    with zipfile.ZipFile(zip_path, 'r') as zip_ref:\n        for file_info in zip_ref.infolist():\n            # Remove spaces and standardize file paths\n            file_name = re.sub(r'\s+', '_', file_info.filename)\n            if file_name.endswith('.css'):\n                zip_ref.extract(file_info, css_dir)\n            elif file_name.endswith('.js'):\n                zip_ref.extract(file_info, js_dir)\n            elif file_name.endswith(('.json', '.csv')):  # Add more data file types as needed\n                zip_ref.extract(file_info, data_dir)\n\ndef create_clean_zip(output_dir, output_zip_path):\n    with zipfile.ZipFile(output_zip_path, 'w') as clean_zip:  # Create new clean ZIP file\n        for folder_name, subfolders, filenames in os.walk(output_dir):\n            for filename in filenames:\n                file_path = os.path.join(folder_name, filename)\n                clean_zip.write(file_path, os.path.relpath(file_path, output_dir))\n\nif __name__ == '__main__':\n    input_zip = 'path_to_your_zip.zip'  # Replace with your zip file path\n    output_directory = 'output_directory'  # Set your output directory here\n    output_zip = 'cleaned_output.zip'  # Cleaned ZIP file output path\n\n    organize_files(input_zip, output_directory)\n    create_clean_zip(output_directory, output_zip)\n    shutil.rmtree(output_directory)  # Optionally remove the output directory\n    print(f'Clean ZIP created at {output_zip}')\n
+import os
+import zipfile
+import shutil
+
+def unzip_file(zip_path, extract_to):
+    """Extracts the ZIP file to the specified folder."""
+    try:
+        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+            zip_ref.extractall(extract_to)
+            print(f"Successfully extracted {zip_path} to {extract_to}.")
+    except Exception as e:
+        print(f"Error extracting {zip_path}: {e}")
+        return False
+    return True
+
+def organize_files(base_dir):
+    """Reorganizes files into css, js, and data folders."""
+    folders = ['css', 'js', 'data']
+    for folder in folders:
+        os.makedirs(os.path.join(base_dir, folder), exist_ok=True)
+
+    for item in os.listdir(base_dir):
+        if item.endswith('.css'):
+            shutil.move(os.path.join(base_dir, item), os.path.join(base_dir, 'css', item))
+        elif item.endswith('.js'):
+            shutil.move(os.path.join(base_dir, item), os.path.join(base_dir, 'js', item))
+        elif os.path.isfile(os.path.join(base_dir, item)):
+            shutil.move(os.path.join(base_dir, item), os.path.join(base_dir, 'data', item))
+
+def create_zip(zip_name, folder_to_zip):
+    """Creates a new ZIP file including the organized files."""
+    try:
+        shutil.make_archive(zip_name, 'zip', folder_to_zip)
+        print(f"Successfully created {zip_name}.zip")
+    except Exception as e:
+        print(f"Error creating {zip_name}.zip: {e}")
+
+def main(zip_path):
+    extract_folder = "extracted_files"
+    
+    if unzip_file(zip_path, extract_folder):
+        organize_files(extract_folder)
+        create_zip('cleaned_files', extract_folder)
+
+        shutil.rmtree(extract_folder)
+
+if __name__ == "__main__":
+    print("Usage: Place the ZIP file path as an argument when running this script.")
