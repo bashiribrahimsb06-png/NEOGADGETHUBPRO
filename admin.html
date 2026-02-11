@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Admin | NeoGadgetHubPro</title>
-  <link rel="stylesheet" href="assets/css/admin.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <p>Manage your gadgets and view analytics here.</p>
+    </header>
 
-  <h2>Admin Dashboard</h2>
+    <main>
+        <section id="gadget-management">
+            <h2>Gadget Management</h2>
+            <button onclick="viewAllGadgets()">View All Gadgets</button>
+        </section>
 
-  <!-- LOGIN -->
-  <div id="loginBox">
-    <input type="password" id="adminPassword" placeholder="Admin Password">
-    <button onclick="login()">Login</button>
-  </div>
+        <section id="analytics">
+            <h2>Analytics</h2>
+            <button onclick="viewAnalytics()">View Analytics</button>
+        </section>
+    </main>
 
-  <!-- ADMIN PANEL -->
-  <div id="adminPanel" style="display:none;">
-    <h3>Add New Gadget</h3>
+    <footer>
+        <p>Contact us at: <a href="mailto:neogadgethubpro@gmail.com">neogadgethubpro@gmail.com</a></p>
+        <p>&copy; 2026 NeoGadgetHubPro. All rights reserved.</p>
+    </footer>
 
-    <input id="name" placeholder="Gadget Name">
-    <input id="category" placeholder="Category (smartphone, laptop...)">
-    <input id="price" placeholder="Price">
-    <input id="specs" placeholder="Specs">
-    <input id="year" placeholder="Release Year">
-
-    <button onclick="addGadget()">Add Gadget</button>
-  </div>
-
-  <script src="assets/js/auth.js"></script>
-  <script src="assets/js/admin.js"></script>
-
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/gadgets.js"></script>
+    <script src="assets/js/admin.js"></script>
 </body>
 </html>
