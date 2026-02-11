@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>NeoGadgetHubPro</title>
-<link rel="stylesheet" href="assets/css/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoGadgetHubPro</title>
+    <!-- CSS at root -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>NeoGadgetHubPro</h1>
+        <p>A website to explore smartphones, laptops, AI, and smart home gadgets.</p>
+    </header>
 
-<header>
-  <h1>NeoGadgetHubPro</h1>
-  <button onclick="toggleMode()">🌙</button>
-</header>
+    <main>
+        <section id="gadgets-section">
+            <h2>Our Gadgets</h2>
+            <div id="gadgets-container">
+                <!-- gadgets.js will populate this -->
+            </div>
+        </section>
 
-<section style="padding:20px">
-  <input id="search" placeholder="Search gadgets..." oninput="render()">
-  <select id="filter" onchange="render()">
-    <option value="">All Categories</option>
-    <option>Smartphone</option>
-    <option>Laptop</option>
-    <option>AI / Robot</option>
-    <option>TV</option>
-  </select>
-</section>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>If you like anything or have questions, contact us at: 
+            <a href="mailto:neogadgethubpro@gmail.com">neogadgethubpro@gmail.com</a></p>
+        </section>
+    </main>
 
-<div id="gadgetGrid"></div>
+    <footer>
+        <p>&copy; 2026 NeoGadgetHubPro. All rights reserved.</p>
+    </footer>
 
-<hr>
-
-<section style="padding:20px">
-<h2>Contact Admin</h2>
-<form name="contact" method="POST" data-netlify="true">
-  <input type="hidden" name="form-name" value="contact">
-  <input name="name" placeholder="Name" required><br>
-  <input name="email" type="email" placeholder="Email" required><br>
-  <textarea name="message" placeholder="Message" required></textarea><br>
-  <button type="submit">Send</button>
-</form>
-</section>
-
-<script src="assets/js/data-gadgets.js"></script>
-<script src="assets/js/app.js"></script>
+    <!-- JS at root -->
+    <script src="auth.js"></script>
+    <script src="app.js"></script>
+    <script src="gadgets.js"></script>
 </body>
 </html>
