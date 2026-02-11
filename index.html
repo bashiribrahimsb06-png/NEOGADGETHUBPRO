@@ -3,38 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeoGadgetHubPro</title>
-    <!-- CSS at root -->
-    <link rel="stylesheet" href="style.css">
+    <title>NeoGadgetHubPro - Admin Dashboard</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <h1>NeoGadgetHubPro</h1>
-        <p>A website to explore smartphones, laptops, AI, and smart home gadgets.</p>
+        <h1>Admin Dashboard</h1>
+        <p>Manage your gadgets and view analytics here.</p>
     </header>
-
     <main>
-        <section id="gadgets-section">
-            <h2>Our Gadgets</h2>
-            <div id="gadgets-container">
-                <!-- gadgets.js will populate this -->
-            </div>
+        <section id="gadget-management">
+            <h2>Gadget Management</h2>
+            <button onclick="AdminDashboard.viewAllGadgets()">View All Gadgets</button>
+            <!-- Additional gadget management UI elements can be added here -->
         </section>
-
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>If you like anything or have questions, contact us at: 
-            <a href="mailto:neogadgethubpro@gmail.com">neogadgethubpro@gmail.com</a></p>
+        <section id="analytics">
+            <h2>Analytics</h2>
+            <button onclick="AdminDashboard.viewAnalytics()">View Analytics</button>
+            <!-- Additional analytics UI elements can be added here -->
         </section>
     </main>
-
     <footer>
+        <p>Contact us at: <a href="mailto:neogadgethubpro@gmail.com">neogadgethubpro@gmail.com</a></p>
         <p>&copy; 2026 NeoGadgetHubPro. All rights reserved.</p>
     </footer>
-
-    <!-- JS at root -->
-    <script src="auth.js"></script>
-    <script src="app.js"></script>
-    <script src="gadgets.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/gadgets.js"></script>
+    <script src="assets/js/admin.js"></script>
 </body>
 </html>
